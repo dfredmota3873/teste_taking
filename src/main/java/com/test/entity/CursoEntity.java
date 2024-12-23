@@ -1,15 +1,21 @@
 package com.test.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Table(name = "cursos")
+@Builder
+@Data
 @Entity
+@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "cursos")
+@ToString
 public class CursoEntity {
 
     @Id
+    @SequenceGenerator(name = "seq", sequenceName = "cursos_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private Long id;
 
     private String nome;
@@ -19,5 +25,6 @@ public class CursoEntity {
     private Boolean ativo;
 
     @ManyToOne
+    @JoinColumn(name = "id_professor")
     private ProfessorEntity professor;
 }
