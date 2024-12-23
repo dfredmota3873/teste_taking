@@ -1,17 +1,15 @@
 package com.test.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
 public class ProfessorResponse {
 
-    private final Long id;
-    private final String nome;
-    private final String email;
+    private Long id;
+    private String nome;
+    private String email;
 }

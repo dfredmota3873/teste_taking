@@ -3,7 +3,6 @@ package com.test.mappers;
 import com.test.dto.response.ProfessorResponse;
 import com.test.entity.ProfessorEntity;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
 
 import java.util.List;
 import java.util.stream.Collectors;
