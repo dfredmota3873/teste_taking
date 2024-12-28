@@ -3,6 +3,8 @@ package com.test.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Builder
 @Data
 @Entity
@@ -11,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @Table(name = "cursos")
 @ToString
-public class CursoEntity {
+public class Curso {
 
     @Id
     @SequenceGenerator(name = "seq", sequenceName = "cursos_id_seq")
@@ -24,7 +26,7 @@ public class CursoEntity {
 
     private Boolean ativo;
 
-    @ManyToOne
-    @JoinColumn(name = "id_professor")
-    private ProfessorEntity professor;
+    @OneToMany(mappedBy = "curso")
+    private List<Semestre> semestres;
+
 }

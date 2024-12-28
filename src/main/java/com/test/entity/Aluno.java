@@ -11,17 +11,18 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode
-public class AlunoEntity {
+public class Aluno {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "seq", sequenceName = "alunos_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private Long id;
 
     private String nome;
 
     @ManyToOne
     @JoinColumn(name = "id_curso")
-    private CursoEntity curso;
+    private Curso curso;
 
     private String email;
 

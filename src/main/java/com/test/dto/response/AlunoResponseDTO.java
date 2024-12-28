@@ -2,17 +2,16 @@ package com.test.dto.response;
 
 import lombok.*;
 
-@Builder
-@Data
-@EqualsAndHashCode
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class CursoResponse {
+@Builder
+public class AlunoResponseDTO {
 
     private Long id;
     private String nome;
-    private String descricao;
+    private Long cursoId;
+    private String email;
     private Boolean ativo;
-    private ProfessorResponse professorResponse;
 }

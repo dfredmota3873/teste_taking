@@ -1,6 +1,5 @@
 package com.test.resource;
 
-import com.test.service.ProfessorService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -13,8 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/professores")
-public class ProfessorResource {
+@Path("/usuarios")
+public class UsuariosResource {
 
     private final ProfessorService professorService;
 

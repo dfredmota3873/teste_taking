@@ -1,10 +1,8 @@
 package com.test.mappers;
 
 import com.test.dto.request.CursoRequest;
-import com.test.dto.response.CursoResponse;
-import com.test.dto.response.ProfessorResponse;
-import com.test.entity.CursoEntity;
-import com.test.entity.ProfessorEntity;
+import com.test.dto.response.CursoResponseDTO;
+import com.test.entity.Curso;
 import jakarta.enterprise.context.RequestScoped;
 
 import java.util.List;
@@ -13,9 +11,9 @@ import java.util.stream.Collectors;
 @RequestScoped
 public class CursoMapper {
 
-    public static CursoResponse toResponse(CursoEntity cursoEntity) {
+    public static CursoResponseDTO toResponse(Curso cursoEntity) {
 
-        return CursoResponse.builder()
+        return CursoResponseDTO.builder()
                 .id(cursoEntity.getId())
                 .nome(cursoEntity.getNome())
                 .descricao(cursoEntity.getDescricao())
@@ -24,9 +22,9 @@ public class CursoMapper {
                 .build();
     }
 
-    public static CursoEntity toEntity(CursoRequest cursoRequest) {
+    public static Curso toEntity(CursoRequest cursoRequest) {
 
-        return CursoEntity.builder()
+        return Curso.builder()
                 .ativo(cursoRequest.getAtivo())
                 .descricao(cursoRequest.getDescricao())
                 .nome(cursoRequest.getNome())
@@ -34,7 +32,7 @@ public class CursoMapper {
 
     }
 
-    public static List<CursoResponse> toResponseList(List<CursoEntity> cursoEntityList) {
+    public static List<CursoResponseDTO> toResponseList(List<Curso> cursoEntityList) {
         return cursoEntityList
                 .stream()
                 .map(CursoMapper::toResponse)

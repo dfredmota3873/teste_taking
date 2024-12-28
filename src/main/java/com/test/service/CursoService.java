@@ -1,14 +1,10 @@
 package com.test.service;
 
 import com.test.dto.request.CursoRequest;
-import com.test.dto.response.CursoResponse;
-import com.test.dto.response.ProfessorResponse;
-import com.test.entity.CursoEntity;
-import com.test.entity.ProfessorEntity;
+import com.test.dto.response.CursoResponseDTO;
+import com.test.entity.Curso;
 import com.test.mappers.CursoMapper;
-import com.test.mappers.ProfessorMapper;
 import com.test.repository.CursoRepository;
-import com.test.repository.ProfessorRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -31,9 +27,9 @@ public class CursoService {
         this.professorRepository = professorRepository;
     }
 
-    public List<CursoResponse> listar(){
+    public List<CursoResponseDTO> listar(){
 
-        List<CursoEntity> lista = this.cursoRepository.listAll();
+        List<Curso> lista = this.cursoRepository.listAll();
 
         if(lista.isEmpty()){
             return Collections.emptyList();
@@ -42,9 +38,9 @@ public class CursoService {
     }
 
     @Transactional
-    public CursoResponse salvar(CursoRequest cursoRequest){
+    public CursoResponseDTO salvar(CursoRequest cursoRequest){
 
-        CursoEntity cursoEntity = CursoMapper.toEntity(cursoRequest);
+        Curso cursoEntity = CursoMapper.toEntity(cursoRequest);
 
         ProfessorEntity professor = professorRepository.findByIdOptional(cursoRequest.getProfessor()).orElseThrow(() ->
                 new NotFoundException("Esse professor não existe"));

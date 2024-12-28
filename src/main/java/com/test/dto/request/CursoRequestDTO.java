@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @Builder
-public class CursoRequest {
+public class CursoRequestDTO {
 
     private Long id;
     @Size(min = 2, max = 200)

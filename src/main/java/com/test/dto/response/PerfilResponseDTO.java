@@ -5,11 +5,11 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@Builder
 @NoArgsConstructor
-public class ProfessorResponse {
-
+@Builder
+public class PerfilResponseDTO {
     private Long id;
     private String nome;
-    private String email;
+    private Boolean ativo;
+    private Boolean isAdmin;
 }
