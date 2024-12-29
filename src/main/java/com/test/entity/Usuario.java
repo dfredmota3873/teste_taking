@@ -1,5 +1,6 @@
 package com.test.entity;
 
+import com.test.enums.EPerfil;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,8 +23,7 @@ public class Usuario {
 
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "perfil_id")
-    private Perfil perfil;
+    @Enumerated(EnumType.STRING)
+    private EPerfil perfil;
 
 }

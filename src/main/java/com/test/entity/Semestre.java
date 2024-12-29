@@ -25,4 +25,7 @@ public class Semestre {
     @OneToMany(mappedBy = "semestre")
     private List<Disciplina> disciplinas;
 
+    @ManyToOne
+    private Curso curso;
+
 }

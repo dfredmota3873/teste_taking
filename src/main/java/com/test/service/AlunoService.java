@@ -44,7 +44,8 @@ public class AlunoService {
     }
 
     @Transactional
-    public void delete(Long id) {
+    public boolean delete(Long id) {
         alunoRepository.deleteById(id);
+        return true;
     }
 }

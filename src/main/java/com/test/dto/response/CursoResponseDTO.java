@@ -14,5 +14,5 @@ public class CursoResponseDTO {
     private String nome;
     private String descricao;
     private Boolean ativo;
-    private ProfessorResponse professorResponse;
+    private UsuarioResponseDTO coordenador;
 }

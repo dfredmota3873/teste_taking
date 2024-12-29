@@ -7,9 +7,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PerfilResponseDTO {
+public class MatrizCurricularResponseDTO {
+
     private Long id;
-    private String nome;
-    private Boolean ativo;
-    private Boolean isAdmin;
+    private Long cursoId;
+    private Long coordenadorId;
 }

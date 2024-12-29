@@ -3,9 +3,7 @@ package com.test.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
-@Table(name = "cursos")
+@Table(name = "alunos")
 @Entity
 @Getter
 @Setter
@@ -13,24 +11,18 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode
-public class Curso {
+public class MatrizCurricular {
 
     @Id
-    @SequenceGenerator(name = "seq", sequenceName = "cursos_id_seq")
+    @SequenceGenerator(name = "seq", sequenceName = "alunos_id_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private Long id;
 
-    private String nome;
-
-    private String descricao;
-
-    private Boolean ativo;
-
-    @OneToMany(mappedBy = "curso")
-    private List<Semestre> semestres;
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
 
     @ManyToOne
     @JoinColumn(name = "coordenador_id")
     private Usuario coordenador;
-
 }

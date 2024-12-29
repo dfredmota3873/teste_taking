@@ -45,7 +45,8 @@ public class UsuarioService {
     }
 
     @Transactional
-    public void delete(Long id) {
+    public boolean delete(Long id) {
         usuarioRepository.deleteById(id);
+        return true;
     }
 }

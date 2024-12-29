@@ -1,25 +1,25 @@
 package com.test.dto.request;
 
+import com.test.enums.EPerfil;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
-
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AlunoRequestDTO {
+public class UsuarioRequestDTO {
 
     @NotBlank(message = "Nome é obrigatório")
     private String nome;
 
-    @NotNull(message = "ID do curso é obrigatório")
-    private Long cursoId;
-
     @NotBlank(message = "Email é obrigatório")
+    @Email(message = "Email deve ser válido")
     private String email;
 
-    private Boolean ativo;
+    @NotBlank(message = "Perfil é obrigatório")
+    private EPerfil perfil;
+
 }
