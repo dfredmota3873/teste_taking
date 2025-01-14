@@ -5,6 +5,7 @@ import com.test.dto.response.CursoResponseDTO;
 import com.test.entity.Curso;
 import com.test.mappers.CursoMapper;
 import com.test.service.CursoService;
+import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -19,6 +20,9 @@ public class CursoController {
 
     @Inject
     CursoService cursoService;
+
+    @Inject
+    SecurityIdentity identity;
 
     @POST
     public Response create(CursoRequestDTO cursoRequest) {

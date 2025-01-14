@@ -1,6 +1,7 @@
 package com.test.service;
 
 import com.test.entity.Curso;
+import com.test.entity.Usuario;
 import com.test.repository.CursoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
@@ -26,6 +27,7 @@ public class CursoService {
 
     @Transactional
     public Curso create(Curso curso) {
+
         cursoRepository.persist(curso);
         return curso;
     }

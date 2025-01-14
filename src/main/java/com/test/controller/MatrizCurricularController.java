@@ -55,7 +55,7 @@ public class MatrizCurricularController {
     @Path("/{id}")
     public Response update(@PathParam("id") Long id, @Valid MatrizCurricularRequestDTO matrizCurricularRequest) {
         MatrizCurricular matrizCurricular = matrizCurricularMapper.toEntity(matrizCurricularRequest);
-        matrizCurricular.setId(id); // Definindo o ID para atualização
+        matrizCurricular.setId(id);
         MatrizCurricular updatedMatriz = matrizCurricularService.update(id, matrizCurricular);
         if (updatedMatriz != null) {
             MatrizCurricularResponseDTO response = matrizCurricularMapper.toResponse(updatedMatriz);

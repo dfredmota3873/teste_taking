@@ -5,6 +5,7 @@ import com.test.dto.response.UsuarioResponseDTO;
 import com.test.entity.Usuario;
 import com.test.mappers.UsuarioMapper;
 import com.test.service.UsuarioService;
+import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
@@ -17,11 +18,11 @@ import java.util.stream.Collectors;
 @Path("/usuarios")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Authenticated
 public class UsuarioController {
 
     @Inject
     UsuarioService usuarioService;
-
 
     @POST
     public Response create(UsuarioRequestDTO usuarioRequest) {
@@ -52,7 +53,7 @@ public class UsuarioController {
     @Path("/{id}")
     public Response update(@PathParam("id") Long id, @Valid UsuarioRequestDTO usuarioRequest) {
         Usuario usuario = UsuarioMapper.toEntity(usuarioRequest);
-        usuario.setId(id); // Definindo ID para a atualização
+        usuario.setId(id);
         Usuario updatedUsuario = usuarioService.update(id, usuario);
         if (updatedUsuario != null) {
             UsuarioResponseDTO response = UsuarioMapper.toResponse(updatedUsuario);

@@ -17,7 +17,6 @@ public class MatrizCurricularMapper {
         if (dto == null) {
             return null;
         }
-        // Aqui você pode precisar buscar as entidades Curso e Usuario, dependendo da lógica da sua aplicação.
         MatrizCurricular matrizCurricular = new MatrizCurricular();
          return matrizCurricular;
     }
@@ -28,8 +27,8 @@ public class MatrizCurricularMapper {
         }
         return MatrizCurricularResponseDTO.builder()
                 .id(entity.getId())
-                .cursoId(entity.getCurso().getId()) // Assumindo que Curso tem método getId
-                .coordenadorId(entity.getCoordenador().getId()) // Assumindo que Usuario tem método getId
+                .cursoId(entity.getCurso().getId())
+                .coordenadorId(entity.getCoordenador().getId())
                 .build();
     }
 }
