@@ -1,4 +1,4 @@
-package com.test.dto;
+package com.test.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -12,7 +12,9 @@ import java.util.List;
 public class SemestreRequestDTO {
 
     @NotBlank(message = "Número do semestre é obrigatório")
-    private String numero;
+    private Integer numero;
 
     private List<Long> disciplinasIds;
+
+    private Long idCurso;
 }

@@ -3,6 +3,7 @@ package com.test.controller;
 import com.test.dto.request.CursoRequestDTO;
 import com.test.dto.response.CursoResponseDTO;
 import com.test.entity.Curso;
+import com.test.exception.TestApplicationException;
 import com.test.mappers.CursoMapper;
 import com.test.service.CursoService;
 import io.quarkus.security.identity.SecurityIdentity;
@@ -25,9 +26,19 @@ public class CursoController {
     SecurityIdentity identity;
 
     @POST
-    public Response create(CursoRequestDTO cursoRequest) {
-        Curso curso = CursoMapper.toEntity(cursoRequest);
-        CursoResponseDTO response = CursoMapper.toResponse(cursoService.create(curso));
+    public Response create(CursoRequestDTO cursoRequest) throws TestApplicationException {
+
+        CursoResponseDTO response = null;
+
+        try {
+
+            Curso curso = CursoMapper.toEntity(cursoRequest);
+            response = CursoMapper.toResponse(cursoService.create(curso));
+
+        } catch (TestApplicationException exception) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(exception.getMessage()).build();
+        }
+
         return Response.status(Response.Status.CREATED).entity(response).build();
     }
 
@@ -44,14 +55,14 @@ public class CursoController {
 
     @GET
     public List<CursoResponseDTO> findAll() {
-         List<Curso> list = cursoService.findAll();
+        List<Curso> list = cursoService.findAll();
 
-         return CursoMapper.toResponseList(list);
+        return CursoMapper.toResponseList(list);
     }
 
     @PUT
     @Path("/{id}")
-    public Response update(@PathParam("id") Long id,CursoRequestDTO cursoRequest) {
+    public Response update(@PathParam("id") Long id, CursoRequestDTO cursoRequest) {
         Curso curso = CursoMapper.toEntity(cursoRequest);
         curso.setId(id);
         Curso updatedCurso = cursoService.update(id, curso);

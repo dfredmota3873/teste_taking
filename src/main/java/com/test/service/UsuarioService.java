@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @ApplicationScoped
@@ -24,6 +25,10 @@ public class UsuarioService {
 
     public Usuario findById(Long id) {
         return usuarioRepository.findById(id);
+    }
+
+    public Optional<Usuario> findByIdOptional(Long id) {
+        return usuarioRepository.findByIdOptional(id);
     }
 
     @Transactional
@@ -45,8 +50,7 @@ public class UsuarioService {
     }
 
     @Transactional
-    public boolean delete(Long id) {
+    public void delete(Long id) {
         usuarioRepository.deleteById(id);
-        return true;
     }
 }

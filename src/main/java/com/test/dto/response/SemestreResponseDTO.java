@@ -10,6 +10,7 @@ import java.util.List;
 @Builder
 public class SemestreResponseDTO {
     private Long id;
-    private String numero;
-    private List<Long> disciplinasIds;
+    private Integer numero;
+    private List<DisciplinaResponseDTO> disciplinaResponseDTO;
+    private CursoResponseDTO curso;
 }

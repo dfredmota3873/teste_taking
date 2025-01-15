@@ -2,9 +2,13 @@ package com.test.service;
 
 import com.test.entity.Curso;
 import com.test.entity.Usuario;
+import com.test.enums.EPerfil;
+import com.test.exception.TestApplicationException;
 import com.test.repository.CursoRepository;
+import com.test.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
 
 import java.util.List;
 
@@ -13,8 +17,12 @@ public class CursoService {
 
     private final CursoRepository cursoRepository;
 
-    public CursoService(CursoRepository cursoRepository) {
+    private final UsuarioRepository usuarioRepository;
+
+    public CursoService(CursoRepository cursoRepository,
+                        UsuarioRepository usuarioRepository) {
         this.cursoRepository = cursoRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public List<Curso> findAll() {
@@ -26,9 +34,19 @@ public class CursoService {
     }
 
     @Transactional
-    public Curso create(Curso curso) {
+    public Curso create(Curso curso) throws TestApplicationException {
+
+        Usuario usuario = this.usuarioRepository.findByIdOptional(curso.getCoordenador().getId())
+                .orElseThrow(() -> new TestApplicationException("O usuário com id : " + curso.getCoordenador().getId() + " nao existe."));
+
+        if (!usuario.getPerfil().equals(EPerfil.COORDENADOR)) {
+            throw new TestApplicationException("O perfil deste usuário não é coordenador!");
+        }
+
+        curso.setCoordenador(usuario);
 
         cursoRepository.persist(curso);
+
         return curso;
     }
 

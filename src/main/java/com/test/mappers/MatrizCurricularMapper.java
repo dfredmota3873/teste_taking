@@ -3,7 +3,6 @@ package com.test.mappers;
 import com.test.dto.request.MatrizCurricularRequestDTO;
 import com.test.dto.response.MatrizCurricularResponseDTO;
 import com.test.entity.MatrizCurricular;
-import com.test.mappers.CursoMapper;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 

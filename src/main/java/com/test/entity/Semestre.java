@@ -20,12 +20,13 @@ public class Semestre {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private Long id;
 
-    private String numero;
+    private Integer numero;
 
     @OneToMany(mappedBy = "semestre")
     private List<Disciplina> disciplinas;
 
     @ManyToOne
+    @JoinColumn(name = "curso_id")
     private Curso curso;
 
 }

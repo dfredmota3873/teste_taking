@@ -11,14 +11,13 @@ import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Path("/usuarios")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Authenticated
 public class UsuarioController {
 
     @Inject
@@ -65,8 +64,11 @@ public class UsuarioController {
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
-        if (usuarioService.delete(id)) {
-            return Response.noContent().build();
+
+        Optional<Usuario> existingUsuario = this.usuarioService.findByIdOptional(id);
+        if (existingUsuario.isPresent()) {
+            this.usuarioService.delete(existingUsuario.get().getId());
+            return Response.ok().build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
