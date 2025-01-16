@@ -15,7 +15,7 @@ import lombok.*;
 public class Disciplina {
 
     @Id
-    @SequenceGenerator(name = "seq", sequenceName = "disciplina_id_seq")
+    @SequenceGenerator(name = "seq", sequenceName = "disciplinas_id_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private Long id;
 

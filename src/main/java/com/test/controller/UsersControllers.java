@@ -1,11 +1,13 @@
 package com.test.controller;
 
+import io.quarkus.security.Authenticated;
 import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 
 @Path("/api/users")
+@Authenticated
 public class UsersControllers {
 
     @Inject

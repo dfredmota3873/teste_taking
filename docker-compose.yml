@@ -1,0 +1,41 @@
+services:
+  psql-db:
+    image: postgres
+    container_name: psql-db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+
+  keycloak:
+    image: quay.io/keycloak/keycloak
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: postgres
+      DB_USER: postgres
+      DB_PASSWORD: root
+      DB_SCHEMA: public
+      KEYCLOAK_USER: 'admin'
+      KEYCLOAK_PASSWORD: 'admin'
+    command:
+      - start-dev
+      - --import-realm
+    ports:
+      - "8080:8080"
+    depends_on:
+      - psql-db
+
+  recipe:
+    container_name: teste_app
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - '8082:8082'
+    depends_on:
+      - psql-db
+
+
